@@ -13,7 +13,7 @@
     ".eslintrc"
   ],
   "dependencies": {
-    "@alifd/next": "^1.x",
+    "@alifd/next": "^1.13.1",
     "@antv/data-set": "^0.9.5",
     "@icedesign/container": "^1.x",
     "@icedesign/data-binder": "^1.x",
@@ -36,9 +36,9 @@
     "moment": "^2.23.0",
     "path-to-regexp": "^2.2.1",
     "prop-types": "^15.5.8",
-    "react": "^16.2.0",
+    "react": "^16.8.3",
     "react-document-title": "^2.0.3",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.8.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
@@ -85,5 +85,15 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "title": "管理系统"
+  "title": "管理系统",
+  "proxyConfig": {
+    "/mock": {
+      "enable": true,
+      "target": "http://yapi.demo.qunar.com/"
+    },
+    "/Outsource": {
+      "enable": true,
+      "target": "http://www.test.com/"
+    }
+  }
 }

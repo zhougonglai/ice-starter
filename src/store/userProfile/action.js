@@ -1,48 +1,22 @@
-/*
- *
- * profile actions
- *
- */
+import { push } from 'react-router-redux';
+import { Message } from '@alifd/next';
 
-import {
-  USER_PROFILE_REQUEST,
-  USER_PROFILE_FAILURE,
-  USER_PROFILE_SUCCESS,
-} from './constants';
-import { getUserProfile } from '../../api/user';
+import { reloadAuthorized } from '../../utils/Authorized';
+import { login } from '../../api/user';
 
-const userProfileRequest = () => {
-  return {
-    type: USER_PROFILE_REQUEST,
-    isLoading: true,
-  };
-};
+const USER_PROFILE = 'USER_PROFILE';
 
-const userProfileSuccess = (payload) => {
-  return {
-    type: USER_PROFILE_FAILURE,
-    isLoading: false,
-    payload,
-  };
-};
-
-const userProfileFailure = (payload) => {
-  return {
-    type: USER_PROFILE_SUCCESS,
-    isLoading: false,
-    payload,
-  };
-};
-
-export const userProfile = (params) => {
-  return async (dispatch) => {
-    dispatch(userProfileRequest());
-    try {
-      const response = await getUserProfile(params);
-
-      dispatch(userProfileSuccess(response.data));
-    } catch (error) {
-      dispatch(userProfileFailure(error));
+export const userProfile = () => async dispatch => {
+  if ('PasswordCredential' in sessionStorage) {
+    const { data, status, info } = await login(JSON.parse(sessionStorage.PasswordCredential));
+    if (status) {
+      dispatch({ type: USER_PROFILE, payload: data });
+    } else {
+      Message.error(info);
     }
-  };
+  } else {
+    Message.success('已登出');
+    reloadAuthorized();
+    dispatch(push('/user/login'));
+  }
 };
