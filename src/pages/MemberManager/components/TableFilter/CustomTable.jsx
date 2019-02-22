@@ -6,23 +6,7 @@ import { compose } from 'redux';
 import reducer from '../../reducer';
 import { memberList } from '../../actions';
 import injectReducer from '../../../../utils/injectReducer';
-
-const getData = () => {
-  return Array.from({ length: 20 }).map((item, index) => {
-    return {
-      id: index + 1,
-      orderID: `12022123${index}`,
-      name: '张一峰',
-      date: `2018-06-${index + 1}`,
-      planDate: `2018-06-${index + 1}`,
-      validData: `2018-06-${index + 1}`,
-      category: '青霉素',
-      state: '已审核',
-      approver: '刘建明',
-      approvalData: `2018-06-${index + 1}`,
-    };
-  });
-};
+// import DynamicIcon from '@icedesign/dynamic-icon';
 
 @compose(injectReducer({ key: 'member', reducer }))
 @withRouter
@@ -88,7 +72,7 @@ export default class Home extends Component {
           hasBorder={false}
           className="custom-table"
         >
-          <Table.Column title="学生" dataIndex="sid" align="center" />
+          <Table.Column title="学生" dataIndex="sname" align="center" />
           <Table.Column title="手机号" dataIndex="mobile" />
           <Table.Column title="七鱼呼叫" dataIndex="call_number" />
           <Table.Column title="最近拨打状态" dataIndex="conn_show" />
