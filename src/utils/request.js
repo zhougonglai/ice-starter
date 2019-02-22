@@ -11,10 +11,6 @@ function checkStatus(response) {
 const options = {
   mode: 'cors',
   credentials: 'include',
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
 };
 
 /**
@@ -23,11 +19,32 @@ const options = {
 export default {
   get: (url, params, option) =>
     fetch(`${url}?${params ? new URLSearchParams(params).toSting() : ''}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Token: sessionStorage.Token,
+      },
       ...options,
       ...option,
     }).then(res => res.json()).catch(checkStatus),
+  auth: (url, body, option) =>
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      ...options,
+      ...option,
+      method: 'POST',
+      body: JSON.stringify(body),
+    }).then(res => res.json()).catch(checkStatus),
   post: (url, body, option) =>
     fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Token: sessionStorage.Token,
+      },
       ...options,
       ...option,
       method: 'POST',

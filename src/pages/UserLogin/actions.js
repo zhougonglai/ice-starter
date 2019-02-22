@@ -9,6 +9,8 @@ export const LOGIN = 'LOGIN';
 export const userLogin = params => async dispatch => {
   const { data, status, info } = await login(params);
   if (status) {
+    sessionStorage.Token = data.token;
+    sessionStorage.PasswordCredential = JSON.stringify(params);
     dispatch({ type: LOGIN, payload: data });
     setAuthority('admin');
     reloadAuthorized();
