@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Table, Pagination, Balloon, Icon } from '@alifd/next';
 import { compose } from 'redux';
 import reducer from '../../reducer';
-import { memberAdd, memberList } from '../../actions';
+import { memberList } from '../../actions';
 import injectReducer from '../../../../utils/injectReducer';
 
 const getData = () => {
@@ -26,7 +26,7 @@ const getData = () => {
 
 @compose(injectReducer({ key: 'member', reducer }))
 @withRouter
-@connect(({ member }) => ({ ...member }), { memberAdd, memberList })
+@connect(({ member }) => ({ ...member }), { memberList })
 export default class Home extends Component {
   static displayName = 'Home';
 
@@ -42,20 +42,6 @@ export default class Home extends Component {
   handlePagination = (current) => {
     this.setState({
       current,
-    });
-  };
-
-  handleSort = (dataIndex, order) => {
-    const dataSource = this.state.dataSource.sort((a, b) => {
-      const result = a[dataIndex] - b[dataIndex];
-      if (order === 'asc') {
-        return result > 0 ? 1 : -1;
-      }
-      return result > 0 ? -1 : 1;
-    });
-
-    this.setState({
-      dataSource,
     });
   };
 
@@ -94,33 +80,22 @@ export default class Home extends Component {
   }
 
   render() {
-    const { dataSource } = this.state;
+    const { lists } = this.props;
     return (
       <div style={styles.tableContainer}>
         <Table
-          dataSource={dataSource}
-          onSort={this.handleSort}
+          dataSource={lists}
           hasBorder={false}
           className="custom-table"
         >
-          <Table.Column title="序列号" dataIndex="id" sortable align="center" />
-          <Table.Column title="调价单号" dataIndex="orderID" sortable />
-          <Table.Column title="调价人" dataIndex="name" />
-          <Table.Column title="调价日期" dataIndex="date" />
-          <Table.Column title="计划生效日期" dataIndex="planDate" />
-          <Table.Column title="实际生效日期" dataIndex="validData" />
-          <Table.Column
-            title="分类"
-            dataIndex="category"
-            cell={this.renderCatrgory}
-          />
-          <Table.Column
-            title="状态"
-            dataIndex="state"
-            cell={this.renderState}
-          />
-          <Table.Column title="审核人" dataIndex="approver" />
-          <Table.Column title="审核日期" dataIndex="approvalData" />
+          <Table.Column title="学生" dataIndex="sid" align="center" />
+          <Table.Column title="手机号" dataIndex="mobile" />
+          <Table.Column title="七鱼呼叫" dataIndex="call_number" />
+          <Table.Column title="最近拨打状态" dataIndex="conn_show" />
+          <Table.Column title="最近拨打时间" dataIndex="last_dial_up" />
+          <Table.Column title="注册时间" dataIndex="create_time_show" />
+          <Table.Column title="预约课时间" dataIndex="ty_lsn_time" />
+          <Table.Column title="设备类型" dataIndex="device" />
           <Table.Column title="操作" cell={this.renderOper} />
         </Table>
         <Pagination

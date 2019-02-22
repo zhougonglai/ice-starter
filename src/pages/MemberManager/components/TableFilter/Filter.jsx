@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Button, DatePicker, Select } from '@alifd/next';
+import { Button, DatePicker, Select, Input } from '@alifd/next';
+
+import './Filter.scss';
 
 export default class TableFilter extends Component {
   static displayName = 'TableFilter';
@@ -7,104 +9,50 @@ export default class TableFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startValue: null,
-      endValue: null,
-      endOpen: false,
+
     };
   }
 
-  disabledStartDate = (startValue) => {
-    const { endValue } = this.state;
-    if (!startValue || !endValue) {
-      return false;
-    }
-    return startValue.valueOf() > endValue.valueOf();
-  };
-
-  disabledEndDate = (endValue) => {
-    const { startValue } = this.state;
-    if (!endValue || !startValue) {
-      return false;
-    }
-    return endValue.valueOf() <= startValue.valueOf();
-  };
-
-  onChange = (field, value) => {
-    this.setState({
-      [field]: value,
-    });
-  };
-
-  onStartChange = (value) => {
-    this.onChange('startValue', value);
-  };
-
-  onEndChange = (value) => {
-    this.onChange('endValue', value);
-  };
-
-  handleStartOpenChange = (open) => {
-    if (!open) {
-      this.setState({ endOpen: true });
-    }
-  };
-
-  handleEndOpenChange = (open) => {
-    this.setState({ endOpen: open });
-  };
-
   render() {
-    const { startValue, endValue, endOpen } = this.state;
     return (
-      <div style={styles.tableFilter}>
-        <div style={styles.filterItem}>
-          <span style={styles.filterLabel}>调价日期：</span>
-          <DatePicker
-            disabledDate={this.disabledStartDate}
-            value={startValue}
-            placeholder="Start"
-            onChange={this.onStartChange}
-            onVisibleChange={this.handleStartOpenChange}
-          />
-          &nbsp;&nbsp;
-          <DatePicker
-            disabledDate={this.disabledEndDate}
-            value={endValue}
-            placeholder="End"
-            onChange={this.onEndChange}
-            visible={endOpen}
-            onVisibleChange={this.handleEndOpenChange}
-          />
+      <div id="tableFilter">
+        <div className="filterItem">
+          <label>学生信息</label>
+          <Input placeholder="请输入学员ID/手机号" />
         </div>
-        <div style={styles.filterItem}>
-          <span style={styles.filterLabel}>状态：</span>
+        <div className="filterItem">
+          <label >最近拨打状态</label>
           <Select>
             <Select.Option value="all">全部</Select.Option>
-            <Select.Option value="checked">已审核</Select.Option>
-            <Select.Option value="unCheck">未审核</Select.Option>
+            <Select.Option value="call">拨打接听</Select.Option>
+            <Select.Option value="unCall">拨打未接</Select.Option>
           </Select>
         </div>
-        <Button type="primary" style={styles.submitButton}>
+        <div className="filterItem">
+          <label >注册时间</label>
+          <DatePicker />
+        </div>
+        <div className="filterItem">
+          <label >预约课时间</label>
+          <DatePicker />
+        </div>
+        <div className="filterItem">
+          <label >设备类型</label>
+          <Select>
+            <Select.Option value="all">全部</Select.Option>
+            <Select.Option value="ipad">Ipad</Select.Option>
+            <Select.Option value="windows">Windows</Select.Option>
+            <Select.Option value="mac">Mac</Select.Option>
+          </Select>
+        </div>
+        <div className="spacer" />
+        <Button type="primary" className="submitBotton">
           查询
+        </Button>
+        <Button type="primary" className="submitBotton">
+          导入
         </Button>
       </div>
     );
   }
 }
-
-const styles = {
-  tableFilter: {
-    display: 'flex',
-    background: '#fff',
-    padding: '20px 0',
-    marginBottom: '20px',
-  },
-  filterItem: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: '15px',
-  },
-  submitButton: {
-    marginLeft: '15px',
-  },
-};

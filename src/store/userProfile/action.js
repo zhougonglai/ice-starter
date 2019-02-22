@@ -13,6 +13,8 @@ export const userProfile = () => async dispatch => {
       dispatch({ type: USER_PROFILE, payload: data });
     } else {
       Message.error(info);
+      reloadAuthorized();
+      dispatch(push('/user/login'));
     }
   } else {
     Message.success('已登出');
