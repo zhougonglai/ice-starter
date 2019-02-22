@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -30,24 +32,24 @@ export default {
   auth: (url, body, option) =>
     fetch(url, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         Accept: 'application/json',
       },
       ...options,
       ...option,
       method: 'POST',
-      body: JSON.stringify(body),
+      body: qs.stringify(body),
     }).then(res => res.json()).catch(checkStatus),
   post: (url, body, option) =>
     fetch(url, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         Accept: 'application/json',
         Token: sessionStorage.Token,
       },
       ...options,
       ...option,
       method: 'POST',
-      body: JSON.stringify(body),
+      body: qs.stringify(body),
     }).then(res => res.json()).catch(checkStatus),
 };
