@@ -16,10 +16,7 @@ export default class TableFilter extends Component {
 
   render() {
     return (
-      <div>
-        <Filter />
-        <CustomTable />
-      </div>
+      <><Filter /><CustomTable /></>
     );
   }
 }

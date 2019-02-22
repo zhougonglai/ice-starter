@@ -1,12 +1,15 @@
 import {
   ADD,
   LIST,
+  VIEW_MODEL,
+  LOADING,
 } from './actions';
 
 const initaState = {
   model: [],
-  lists: [],
+  list: [],
   total: 0,
+  loading: false,
 };
 
 export default (state = initaState, action) => {
@@ -17,8 +20,19 @@ export default (state = initaState, action) => {
       const { list, total } = action.payload;
       return {
         ...state,
-        lists: state.lists.concat(list),
+        list,
         total,
+      };
+    case LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    case VIEW_MODEL:
+      // TODO viewModel并不需要被后端管理. 如果需要得重新封装
+      console.log(action.payload);
+      return {
+        ...state,
       };
     default:
       return state;

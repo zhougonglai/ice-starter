@@ -1,0 +1,24 @@
+#tableContainer{
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  padding-bottom: 16px;
+  .pagination{
+    margin: 16px 0;
+    text-align: center;
+  }
+  .editIcon{
+    color: #999;
+    cursor: pointer;
+  }
+  .circle{
+    display: inline-block;
+    background-color: #28a745;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    margin-right: 4px;
+  }
+  .stateText{
+    color: #28a745;
+  }
+}

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Table, Pagination, Balloon, Icon } from '@alifd/next';
+import { Table, Pagination, Button } from '@alifd/next';
 import { compose } from 'redux';
 import reducer from '../../reducer';
 import { memberList } from '../../actions';
 import injectReducer from '../../../../utils/injectReducer';
-// import DynamicIcon from '@icedesign/dynamic-icon';
+
+import './CustomTable.scss';
 
 @compose(injectReducer({ key: 'member', reducer }))
 @withRouter
@@ -18,44 +19,20 @@ export default class Home extends Component {
     super(props);
     this.state = {
       current: 1,
-      dataSource: getData(),
     };
-    console.log(props);
   }
 
-  handlePagination = (current) => {
-    this.setState({
-      current,
-    });
-  };
-
-  renderCatrgory = (value) => {
+  renderIcon = () => {
     return (
-      <Balloon
-        align="lt"
-        trigger={<div style={{ margin: '5px' }}>{value}</div>}
-        closable={false}
-        style={{ lineHeight: '24px' }}
-      >
-        青霉素是抗菌素的一种，是能破坏细菌的细胞壁并在细菌细胞的繁殖期起杀菌作用的一类抗生素
-      </Balloon>
+      <svg className="icon pointer" aria-hidden="true">
+        <use xlinkHref="#icon-call" />
+      </svg>
     );
-  };
-
-  renderState = (value) => {
-    return (
-      <div style={styles.state}>
-        <span style={styles.circle} />
-        <span style={styles.stateText}>{value}</span>
-      </div>
-    );
-  };
+  }
 
   renderOper = () => {
     return (
-      <div style={styles.oper}>
-        <Icon type="edit" size="small" style={styles.editIcon} />
-      </div>
+      <><Button text type="primary">约体验课</Button><div className="spacer" /><Button text type="primary">下单</Button></>
     );
   };
 
@@ -64,56 +41,31 @@ export default class Home extends Component {
   }
 
   render() {
-    const { lists } = this.props;
+    const { list, total, loading } = this.props;
     return (
-      <div style={styles.tableContainer}>
+      <div id="tableContainer">
         <Table
-          dataSource={lists}
+          dataSource={list}
           hasBorder={false}
+          loading={loading}
           className="custom-table"
         >
           <Table.Column title="学生" dataIndex="sname" align="center" />
-          <Table.Column title="手机号" dataIndex="mobile" />
-          <Table.Column title="七鱼呼叫" dataIndex="call_number" />
-          <Table.Column title="最近拨打状态" dataIndex="conn_show" />
-          <Table.Column title="最近拨打时间" dataIndex="last_dial_up" />
-          <Table.Column title="注册时间" dataIndex="create_time_show" />
-          <Table.Column title="预约课时间" dataIndex="ty_lsn_time" />
-          <Table.Column title="设备类型" dataIndex="device" />
-          <Table.Column title="操作" cell={this.renderOper} />
+          <Table.Column title="手机号" dataIndex="mobile" align="center" />
+          <Table.Column title="七鱼呼叫" cell={this.renderIcon} align="center" />
+          <Table.Column title="最近拨打状态" dataIndex="conn_show" align="center" />
+          <Table.Column title="最近拨打时间" dataIndex="last_dial_up" align="center" />
+          <Table.Column title="注册时间" dataIndex="create_time_show" align="center" />
+          <Table.Column title="预约课时间" dataIndex="ty_lsn_time" align="center" />
+          <Table.Column title="设备类型" dataIndex="device" align="center" />
+          <Table.Column title="操作" cell={this.renderOper} align="center" />
         </Table>
-        <Pagination
-          style={styles.pagination}
+        <Pagination className="pagination"
           current={this.state.current}
           onChange={this.handlePagination}
+          total={total}
         />
       </div>
     );
   }
 }
-
-const styles = {
-  tableContainer: {
-    background: '#fff',
-    paddingBottom: '10px',
-  },
-  pagination: {
-    margin: '20px 0',
-    textAlign: 'center',
-  },
-  editIcon: {
-    color: '#999',
-    cursor: 'pointer',
-  },
-  circle: {
-    display: 'inline-block',
-    background: '#28a745',
-    width: '8px',
-    height: '8px',
-    borderRadius: '50px',
-    marginRight: '4px',
-  },
-  stateText: {
-    color: '#28a745',
-  },
-};
