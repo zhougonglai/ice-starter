@@ -23,21 +23,23 @@ const searchParams = query =>
     ? `?${new URLSearchParams(query).toString()}`
     : '');
 
+const base = process.env.NODE_ENV === 'development' ? '' : 'https://www.landi.com';
+
 
 /**
  * Requests a URL, returning a promise.
  */
 export default {
   get: (url, params, option) =>
-    fetch(`${url}${searchParams(params)}`, {
+    fetch(`${base}${url}${searchParams(params)}`, {
       headers: {
-        Token: sessionStorage.Token,
+        Token: sessionStorage.Token || localStorage.Token,
       },
       ...options,
       ...option,
     }).then(res => res.json()).catch(checkStatus),
   post: (url, body, option) =>
-    fetch(url, {
+    fetch(`${base}${url}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -47,10 +49,10 @@ export default {
       body: qs.stringify(body),
     }).then(res => res.json()).catch(checkStatus),
   auth: (url, body, option) =>
-    fetch(url, {
+    fetch(`${base}${url}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Token: sessionStorage.Token,
+        Token: sessionStorage.Token || localStorage.Token,
       },
       ...options,
       ...option,

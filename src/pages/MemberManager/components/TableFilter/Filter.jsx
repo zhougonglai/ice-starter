@@ -45,6 +45,7 @@ export default class TableFilter extends Component {
 
   memberList = () => {
     const { std, is_conn, create_time, exp_time, device } = this.state;
+    console.log(create_time);
     this.props.memberList(Object.assign({},
       std ? { std } : {},
       is_conn ? { is_conn } : {},

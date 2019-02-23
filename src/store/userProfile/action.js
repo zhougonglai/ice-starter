@@ -10,7 +10,7 @@ const overdue = dispatch => {
 };
 
 export const userProfile = () => async dispatch => {
-  if ('Token' in sessionStorage) {
+  if ('Token' in sessionStorage || 'Token' in localStorage) {
     console.log('update');
   } else {
     overdue(dispatch);

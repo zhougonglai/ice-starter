@@ -6,10 +6,14 @@ import { reloadAuthorized } from '../../utils/Authorized';
 
 export const LOGIN = 'LOGIN';
 
-export const userLogin = params => async dispatch => {
-  const { data, status, info } = await login(params);
+export const userLogin = ({ account, password, remember }) => async dispatch => {
+  const { data, status, info } = await login({ account, password });
   if (status) {
-    sessionStorage.Token = data.token;
+    if (remember) {
+      localStorage.Token = data.token;
+    } else {
+      sessionStorage.Token = data.token;
+    }
     dispatch({ type: LOGIN, payload: data });
     setAuthority('admin');
     reloadAuthorized();

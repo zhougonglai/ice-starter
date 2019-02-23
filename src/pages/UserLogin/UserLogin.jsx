@@ -40,11 +40,11 @@ export default class UserLogin extends Component {
     });
   };
 
-  handleSubmit = ({ account, password }, errors) => {
+  handleSubmit = (form, errors) => {
     if (errors) {
       console.log('errors', errors);
     } else {
-      this.props.userLogin({ account, password });
+      this.props.userLogin(form);
     }
   };
 

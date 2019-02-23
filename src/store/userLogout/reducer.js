@@ -31,6 +31,7 @@ function logoutReducer(state = initialState, action) {
       });
     case LOGOUT:
       sessionStorage.removeItem('Token');
+      localStorage.removeItem('Token');
       return state;
     default:
       return state;
