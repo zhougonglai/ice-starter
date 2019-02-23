@@ -32,12 +32,17 @@ export default class Home extends Component {
 
   renderOper = () => {
     return (
-      <><Button text type="primary">约体验课</Button><div className="spacer" /><Button text type="primary">下单</Button></>
+      <div className="split">
+        <Button text type="primary">约体验课</Button>
+        <div className="spacer" />
+        <Button text type="primary">下单</Button>
+      </div>
     );
   };
 
   componentDidMount() {
     this.props.memberList();
+    console.log('ENV', process.env.ENV);
   }
 
   render() {

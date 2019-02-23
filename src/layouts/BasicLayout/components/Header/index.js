@@ -76,13 +76,13 @@ export default class Header extends PureComponent {
             className="user-profile-menu"
           >
             <ul>
-              <li
+              {/* <li
                 className="user-profile-menu-item"
                 onClick={this.handleSetting}
               >
                 <Icon type="set" size="small" />
                 设置
-              </li>
+              </li> */}
               <li
                 className="user-profile-menu-item"
                 onClick={this.props.handleLogout}

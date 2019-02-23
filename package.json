@@ -34,6 +34,7 @@
     "invariant": "^2.2.4",
     "lodash": "^4.17.10",
     "moment": "^2.23.0",
+    "node-sass": "^4.11.0",
     "path-to-regexp": "^2.2.1",
     "prop-types": "^15.5.8",
     "react": "^16.8.3",
@@ -58,6 +59,7 @@
   },
   "scripts": {
     "start": "ice dev",
+    "page": "ENV=prod ice dev",
     "build": "ice build",
     "lint": "eslint . --ext '.js,.jsx' --fix"
   },
@@ -90,6 +92,10 @@
     "/Outsource": {
       "enable": true,
       "target": "http://www.test.com/"
+    },
+    "/mock": {
+      "enable": true,
+      "target": "http://yapi.demo.qunar.com/"
     }
   }
 }

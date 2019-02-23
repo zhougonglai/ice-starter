@@ -15,4 +15,17 @@
   .submitBotton{
     margin: 8px;
   }
+
+}
+
+.memberManager{
+  .next-dialog-body{
+    display: flex;
+    flex-direction: column;
+    .next-input{
+      &+.next-input{
+        margin-top: 16px;
+      }
+    }
+  }
 }

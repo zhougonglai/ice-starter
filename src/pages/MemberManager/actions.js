@@ -13,45 +13,47 @@ export const LIST = 'LIST';
 export const VIEW_MODEL = 'VIEW_MODEL';
 export const LOADING = 'LOADING';
 
-const overdue = (dispatch, message) => {
+const overdue = ({ code, info }, dispatch) => {
   dispatch({ type: LOADING, payload: false });
-  Message.warning(message);
-  reloadAuthorized();
-  dispatch(push('/user/login'));
+  Message.warning(info);
+  if (code === 301) {
+    reloadAuthorized();
+    dispatch(push('/user/login'));
+  }
 };
 
 export const memberAdd = (params) => async (dispatch) => {
   dispatch({ type: LOADING, payload: true });
-  const { data, status, info } = await add(params);
+  const { data, status, info, code } = await add(params);
   if (status) {
     dispatch({ type: ADD, payload: data });
     dispatch({ type: LOADING, payload: false });
   } else {
-    overdue(dispatch, info);
+    overdue({ data, info, status, code }, dispatch);
   }
   return { data, info, status };
 };
 
 export const memberModel = params => async dispatch => {
   dispatch({ type: LOADING, payload: true });
-  const { data, status, info } = await viewModel(params);
+  const { data, status, info, code } = await viewModel(params);
   if (status) {
     dispatch({ type: VIEW_MODEL, payload: data });
     dispatch({ type: LOADING, payload: false });
   } else {
-    overdue(dispatch, info);
+    overdue({ data, info, status, code }, dispatch);
   }
   return { data, info, status };
 };
 
 export const memberList = (params) => async dispatch => {
   dispatch({ type: LOADING, payload: true });
-  const { data, info, status } = await lists(params);
+  const { data, info, status, code } = await lists(params);
   if (status) {
     dispatch({ type: LIST, payload: data });
     dispatch({ type: LOADING, payload: false });
   } else {
-    overdue(dispatch, info);
+    overdue({ data, info, status, code }, dispatch);
   }
   return { data, info, status };
 };

@@ -30,7 +30,6 @@ export default (state = initaState, action) => {
       };
     case VIEW_MODEL:
       // TODO viewModel并不需要被后端管理. 如果需要得重新封装
-      console.log(action.payload);
       return {
         ...state,
       };

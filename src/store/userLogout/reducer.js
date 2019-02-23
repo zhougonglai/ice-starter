@@ -9,6 +9,7 @@ import {
   USER_LOGOUT_FAILURE,
   USER_LOGOUT_SUCCESS,
 } from './constants';
+import { LOGOUT } from './action';
 
 // The initial state
 const initialState = {};
@@ -28,6 +29,9 @@ function logoutReducer(state = initialState, action) {
       return Object.assign({}, state, {
         isLoading: action.isLoading,
       });
+    case LOGOUT:
+      sessionStorage.removeItem('Token');
+      return state;
     default:
       return state;
   }

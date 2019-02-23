@@ -16,35 +16,40 @@ const options = {
 };
 
 /**
+  * @desc get请求序列化
+  */
+const searchParams = query =>
+  ((typeof query === 'object')
+    ? `?${new URLSearchParams(query).toString()}`
+    : '');
+
+
+/**
  * Requests a URL, returning a promise.
  */
 export default {
   get: (url, params, option) =>
-    fetch(`${url}?${params ? new URLSearchParams(params).toSting() : ''}`, {
+    fetch(`${url}${searchParams(params)}`, {
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
         Token: sessionStorage.Token,
       },
       ...options,
       ...option,
     }).then(res => res.json()).catch(checkStatus),
-  auth: (url, body, option) =>
+  post: (url, body, option) =>
     fetch(url, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
       },
       ...options,
       ...option,
       method: 'POST',
       body: qs.stringify(body),
     }).then(res => res.json()).catch(checkStatus),
-  post: (url, body, option) =>
+  auth: (url, body, option) =>
     fetch(url, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json',
         Token: sessionStorage.Token,
       },
       ...options,

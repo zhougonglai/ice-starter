@@ -7,7 +7,9 @@ export default class Logo extends PureComponent {
     return (
       <div className="logo">
         <Link to="/" className="logo-text">
-          LOGO
+          <svg className="icon pointer" aria-hidden="true">
+            <use xlinkHref="#icon-logo1" />
+          </svg>
         </Link>
       </div>
     );

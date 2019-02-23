@@ -9,6 +9,14 @@ import { userProfile } from '../../store/userProfile/action';
 import { userLogout } from '../../store/userLogout/action';
 
 const BasicLayoutHoc = (WrappedComponent) => {
+  @compose(injectReducer({
+    key: 'logout',
+    reducer: logoutReducer,
+  }), injectReducer({
+    key: 'profile',
+    reducer: profileReducer,
+  }))
+  @connect(store => store, { userLogout, userProfile })
   class Container extends Component {
     constructor(props) {
       super(props);
@@ -24,35 +32,7 @@ const BasicLayoutHoc = (WrappedComponent) => {
     }
   }
 
-  const mapDispatchToProps = {
-    userProfile,
-    userLogout,
-  };
-
-  const mapStateToProps = (state) => {
-    return { profile: state.profile, logout: state.logout };
-  };
-
-  const withConnect = connect(
-    mapStateToProps,
-    mapDispatchToProps
-  );
-
-  const withProfileReducer = injectReducer({
-    key: 'profile',
-    reducer: profileReducer,
-  });
-
-  const withLogoutReducer = injectReducer({
-    key: 'logout',
-    reducer: logoutReducer,
-  });
-
-  return compose(
-    withProfileReducer,
-    withLogoutReducer,
-    withConnect
-  )(Container);
+  return Container;
 };
 
 export default BasicLayoutHoc;

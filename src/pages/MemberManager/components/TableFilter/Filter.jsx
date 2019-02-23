@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, DatePicker, Select, Input } from '@alifd/next';
+import { Button, DatePicker, Select, Input, Dialog, Message } from '@alifd/next';
 import { memberAdd, memberModel, memberList } from '../../actions';
 
 import './Filter.scss';
@@ -31,6 +31,9 @@ export default class TableFilter extends Component {
       create_time: '',
       exp_time: '',
       divice: '',
+      mobile: '',
+      nickname: '',
+      dialog: false,
     };
   }
 
@@ -41,7 +44,27 @@ export default class TableFilter extends Component {
   }
 
   memberList = () => {
-    this.props.memberList();
+    const { std, is_conn, create_time, exp_time, divice } = this.state;
+    this.props.memberList(Object.assign({},
+      std ? { std } : {},
+      is_conn ? { is_conn } : {},
+      create_time ? { create_time } : {},
+      exp_time ? { exp_time } : {},
+      divice ? { divice } : {}
+    ));
+  }
+
+  addStd = () => {
+    const { mobile, nickname } = this.state;
+    if (mobile && nickname) {
+      this.props.memberAdd({ mobile, nickname })
+        .then((res) => {
+          console.log(res);
+          this.onChange('dialog', false);
+        });
+    } else {
+      Message.info('字段未完成');
+    }
   }
 
   componentWillMount() {
@@ -49,9 +72,44 @@ export default class TableFilter extends Component {
   }
 
   render() {
-    const { std, is_conn, create_time, exp_time, divice } = this.state;
+    const {
+      std,
+      is_conn,
+      create_time,
+      exp_time,
+      divice,
+      dialog,
+      mobile,
+      nickname,
+    } = this.state;
     return (
       <div id="tableFilter">
+        <Dialog
+          visible={dialog}
+          title="添加学生"
+          onOk={this.addStd}
+          onCancel={() => this.onChange('dialog', false)}
+          className="memberManager"
+        >
+          <Input
+            name="mobile"
+            value={mobile}
+            placeholder="请输入学员手机号"
+            label="学生手机号"
+            onChange={e => this.onChange('mobile', e)}
+            trim
+            hasClear
+          />
+          <Input
+            name="nickname"
+            value={nickname}
+            placeholder="请输入学员昵称"
+            label="学生昵称"
+            onChange={e => this.onChange('nickname', e)}
+            trim
+            hasClear
+          />
+        </Dialog>
         <div className="filterItem">
           <Input
             name="std"
@@ -117,7 +175,7 @@ export default class TableFilter extends Component {
         <Button type="primary" className="submitBotton" onClick={this.memberList}>
           查询
         </Button>
-        <Button type="primary" className="submitBotton">
+        <Button type="primary" className="submitBotton" onClick={() => this.onChange('dialog', !dialog)}>
           导入
         </Button>
       </div>

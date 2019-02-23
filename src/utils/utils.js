@@ -85,4 +85,6 @@ function getRouterData(routerConfig, menuConfig) {
   return routerData;
 }
 
+export const filterOjbect = obj => Object.entries(obj).filter(arr => arr[1]).map(i => ({ [i[0]]: i[1] }));
+
 export { getFlatMenuData, getRouterData, formatterMenuData };
