@@ -40,6 +40,16 @@ export default class Home extends Component {
     );
   };
 
+  renderSplit = timerange => {
+    return timerange.length ?
+      <div className="columns">
+        {
+          timerange.map(time => <div className="row" key={time}>{time}</div>)
+        }
+      </div> :
+      '';
+  }
+
   componentDidMount() {
     this.props.memberList();
     console.log('ENV', process.env.ENV);
@@ -61,7 +71,7 @@ export default class Home extends Component {
           <Table.Column title="最近拨打状态" dataIndex="conn_show" align="center" />
           <Table.Column title="最近拨打时间" dataIndex="last_dial_up" align="center" />
           <Table.Column title="注册时间" dataIndex="create_time_show" align="center" />
-          <Table.Column title="预约课时间" dataIndex="ty_lsn_time" align="center" />
+          <Table.Column title="预约课时间" dataIndex="ty_lsn_time" cell={this.renderSplit} align="center" />
           <Table.Column title="设备类型" dataIndex="device" align="center" />
           <Table.Column title="操作" dataIndex="token" cell={this.renderOper} align="center" />
         </Table>

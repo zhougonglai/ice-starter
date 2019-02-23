@@ -50,7 +50,7 @@ export default class TableFilter extends Component {
       is_conn ? { is_conn } : {},
       create_time.length ? { create_time: create_time.map(moment => moment.format('YYYY-MM-DD')) } : {},
       exp_time.length ? { exp_time: exp_time.map(moment => moment.format('YYYY-MM-DD')) } : {},
-      device ? { device } : {}
+      Number.isFinite(device) ? { device } : {}
     ));
   }
 
@@ -58,7 +58,10 @@ export default class TableFilter extends Component {
     const { mobile, nickname } = this.state;
     if (mobile && nickname) {
       this.props.memberAdd({ mobile, nickname })
-        .then((res) => {
+        .then(({ status }) => {
+          if (status) {
+            this.memberList();
+          }
           this.onChange('dialog', false);
         });
     } else {

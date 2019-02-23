@@ -24,4 +24,11 @@
   .split{
     display: flex;
   }
+  .column{
+    .row{
+      +.row{
+        margin-top: 8px;
+      }
+    }
+  }
 }
