@@ -26,6 +26,7 @@ export const memberAdd = (params) => async (dispatch) => {
   dispatch({ type: LOADING, payload: true });
   const { data, status, info, code } = await add(params);
   if (status) {
+    Message.success(info);
     dispatch({ type: ADD, payload: data });
     dispatch({ type: LOADING, payload: false });
   } else {

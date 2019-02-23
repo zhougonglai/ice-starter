@@ -59,7 +59,6 @@ export default class TableFilter extends Component {
     if (mobile && nickname) {
       this.props.memberAdd({ mobile, nickname })
         .then((res) => {
-          console.log(res);
           this.onChange('dialog', false);
         });
     } else {
