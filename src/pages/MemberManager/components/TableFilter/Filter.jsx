@@ -28,9 +28,9 @@ export default class TableFilter extends Component {
     this.state = {
       std: '',
       is_conn: '',
-      create_time: '',
-      exp_time: '',
-      divice: '',
+      create_time: [],
+      exp_time: [],
+      device: '',
       mobile: '',
       nickname: '',
       dialog: false,
@@ -44,13 +44,13 @@ export default class TableFilter extends Component {
   }
 
   memberList = () => {
-    const { std, is_conn, create_time, exp_time, divice } = this.state;
+    const { std, is_conn, create_time, exp_time, device } = this.state;
     this.props.memberList(Object.assign({},
       std ? { std } : {},
       is_conn ? { is_conn } : {},
-      create_time ? { create_time } : {},
-      exp_time ? { exp_time } : {},
-      divice ? { divice } : {}
+      create_time.length ? { create_time: create_time.map(moment => moment.format('YYYY-MM-DD')) } : {},
+      exp_time.length ? { exp_time: exp_time.map(moment => moment.format('YYYY-MM-DD')) } : {},
+      device ? { device } : {}
     ));
   }
 
@@ -77,7 +77,7 @@ export default class TableFilter extends Component {
       is_conn,
       create_time,
       exp_time,
-      divice,
+      device,
       dialog,
       mobile,
       nickname,
@@ -138,29 +138,31 @@ export default class TableFilter extends Component {
           </Select>
         </div>
         <div className="filterItem">
-          <DatePicker
+          <DatePicker.RangePicker
             name="create_time"
             value={create_time}
             label="注册时间"
+            format="YYYY-MM-DD"
             onChange={e => this.onChange('create_time', e)}
             hasClear
           />
         </div>
         <div className="filterItem">
-          <DatePicker
+          <DatePicker.RangePicker
             name="exp_time"
             value={exp_time}
             label="预约课时间"
+            format="YYYY-MM-DD"
             onChange={e => this.onChange('exp_time', e)}
             hasClear
           />
         </div>
         <div className="filterItem">
           <Select
-            name="divice"
-            value={divice}
+            name="device"
+            value={device}
             label="设备类型"
-            onChange={e => this.onChange('divice', e)}
+            onChange={e => this.onChange('device', e)}
             hasClear
           >
             {

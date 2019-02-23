@@ -30,12 +30,12 @@ export default class Home extends Component {
     );
   }
 
-  renderOper = () => {
+  renderOper = token => {
     return (
       <div className="split">
-        <Button text type="primary">约体验课</Button>
+        <Button text type="primary" component="a" target="_blank" href={`http://www.landi.com/Member/Test/reserve/f/2?token=${token}`}>约体验课</Button>
         <div className="spacer" />
-        <Button text type="primary">下单</Button>
+        <Button text type="primary" component="a" target="_blank" href={`http://www.landi.com/Member/Course/index?token=${token}`}>下单</Button>
       </div>
     );
   };
@@ -63,7 +63,7 @@ export default class Home extends Component {
           <Table.Column title="注册时间" dataIndex="create_time_show" align="center" />
           <Table.Column title="预约课时间" dataIndex="ty_lsn_time" align="center" />
           <Table.Column title="设备类型" dataIndex="device" align="center" />
-          <Table.Column title="操作" cell={this.renderOper} align="center" />
+          <Table.Column title="操作" dataIndex="token" cell={this.renderOper} align="center" />
         </Table>
         <Pagination className="pagination"
           current={this.state.current}

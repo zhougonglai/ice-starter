@@ -96,6 +96,10 @@
     "/mock": {
       "enable": true,
       "target": "http://yapi.demo.qunar.com/"
+    },
+    "/user": {
+      "enable": true,
+      "target": "http://eplus.test.com/"
     }
   }
 }
