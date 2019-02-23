@@ -33,9 +33,9 @@ export default class Home extends Component {
   renderOper = token => {
     return (
       <div className="split">
-        <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Test/reserve/f/2?token=${token}`}>约体验课</Button>
+        <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Test/reserve/f/2?outsource=${token}`}>约体验课</Button>
         <div className="spacer" />
-        <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Course/index?token=${token}`}>下单</Button>
+        <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Course/index?outsource=${token}`}>下单</Button>
       </div>
     );
   };
