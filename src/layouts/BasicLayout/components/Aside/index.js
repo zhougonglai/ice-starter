@@ -108,6 +108,7 @@ export default class Aside extends Component {
             key={index}
             icon={item.icon ? item.icon : null}
             label={<span className="ice-menu-collapse-hide">{item.name}</span>}
+            className={this.props.location.pathname.includes(item.path) ? 'active' : ''}
           >
             {childrenItems}
           </SubNav>
@@ -116,7 +117,7 @@ export default class Aside extends Component {
       return null;
     }
     return (
-      <NavItem key={item.path} icon={item.icon ? item.icon : null}>
+      <NavItem key={item.path} icon={item.icon ? item.icon : null} className={this.props.location.pathname.includes(item.path) ? 'active' : ''}>
         <Link to={item.path}>{item.name}</Link>
       </NavItem>
     );

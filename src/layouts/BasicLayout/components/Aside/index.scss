@@ -3,6 +3,51 @@
     .next-nav,
     .next-nav-sub-nav-item {
       background: transparent;
+      .next-menu-item.next-nav-item{
+        border-left: 3px solid transparent;
+        border-radius: 4px;
+        position: relative;
+        transform: all 0.6s ease;
+      }
+      .active{
+        &.next-selected{
+          border-left-color: $color-brand1-6;
+          border-right-color: $color-brand1-6;
+          &::before{
+            content: '';
+            width: var(--base-distance, 8px);
+            height: 3px;
+            border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
+            background-color: $color-brand1-6;
+            left: 0;
+            top: 18px;
+            position: absolute;
+          }
+          &::after{
+            content: '';
+            width: var(--base-distance, 8px);
+            height: 3px;
+            border-radius: var(--radius, 4px) 0 0 var(--radius, 4px);
+            background-color: $color-brand1-6;
+            right: 0;
+            top: 18px;
+            position: absolute;
+          }
+        }
+        &>.next-menu-item.next-nav-item{
+          border-left-color: $color-brand1-6;
+          &::before{
+            content: '';
+            width: var(--base-distance, 8px);
+            height: 3px;
+            border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
+            background-color: $color-brand1-6;
+            left: 0;
+            top: 18px;
+            position: absolute;
+          }
+        }
+      }
     }
     .next-nav .next-nav-item.next-menu-item {
       background: transparent;
@@ -20,7 +65,8 @@
       transition: none;
       border-left: 3px solid transparent;
       border-right: 3px solid transparent;
-
+      border-radius: 4px;
+      transform: all 0.6s ease;
       &.next-selected{
         position: relative;
         &::before{
