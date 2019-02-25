@@ -10,4 +10,4 @@ export const viewModel = params =>
   request.get('/Outsource/Student/viewModel', params);
 
 export const qiyuSDK = () =>
-  request.get('/user/User/getCallToolbar');
+  request.get('/Outsource/Index/getCallToolbar');

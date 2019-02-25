@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Button, DatePicker, Select, Input, Dialog, Message } from '@alifd/next';
-import { memberAdd, memberModel, memberList } from '../../actions';
+import { Button, DatePicker, Select, Input, Dialog } from '@alifd/next';
 
-import './Filter.scss';
+import styles from './Filter.module.scss';
 
 const is_coon_options = [
   { id: -1, value: '未打' },
@@ -19,56 +17,8 @@ const device_options = [
   { id: 0, value: '其他' },
 ];
 
-@connect(({ member }) => ({ ...member }), { memberAdd, memberModel, memberList })
 export default class TableFilter extends Component {
   static displayName = 'TableFilter';
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      std: '',
-      is_conn: '',
-      create_time: [],
-      exp_time: [],
-      device: '',
-      mobile: '',
-      nickname: '',
-      dialog: false,
-    };
-  }
-
-  onChange = (file, value) => {
-    this.setState({
-      [file]: value,
-    });
-  }
-
-  memberList = () => {
-    const { std, is_conn, create_time, exp_time, device } = this.state;
-    console.log(create_time);
-    this.props.memberList(Object.assign({},
-      std ? { std } : {},
-      is_conn ? { is_conn } : {},
-      create_time.length ? { create_time: create_time.map(moment => moment.format('YYYY-MM-DD')) } : {},
-      exp_time.length ? { exp_time: exp_time.map(moment => moment.format('YYYY-MM-DD')) } : {},
-      Number.isFinite(device) ? { device } : {}
-    ));
-  }
-
-  addStd = () => {
-    const { mobile, nickname } = this.state;
-    if (mobile && nickname) {
-      this.props.memberAdd({ mobile, nickname })
-        .then(({ status }) => {
-          if (status) {
-            this.memberList();
-          }
-          this.onChange('dialog', false);
-        });
-    } else {
-      Message.info('字段未完成');
-    }
-  }
 
   componentWillMount() {
     this.props.memberModel();
@@ -84,22 +34,22 @@ export default class TableFilter extends Component {
       dialog,
       mobile,
       nickname,
-    } = this.state;
+    } = this.props;
     return (
-      <div id="tableFilter">
+      <div className={styles.tableFilter}>
         <Dialog
           visible={dialog}
           title="添加学生"
-          onOk={this.addStd}
-          onCancel={() => this.onChange('dialog', false)}
-          className="memberManager"
+          onOk={this.props.addStd}
+          onCancel={() => this.props.onChange('dialog', false)}
+          className={styles.memberManager}
         >
           <Input
             name="mobile"
             value={mobile}
             placeholder="请输入学员手机号"
             label="学生手机号"
-            onChange={e => this.onChange('mobile', e)}
+            onChange={e => this.props.onChange('mobile', e)}
             trim
             hasClear
           />
@@ -108,28 +58,28 @@ export default class TableFilter extends Component {
             value={nickname}
             placeholder="请输入学员昵称"
             label="学生昵称"
-            onChange={e => this.onChange('nickname', e)}
+            onChange={e => this.props.onChange('nickname', e)}
             trim
             hasClear
           />
         </Dialog>
-        <div className="filterItem">
+        <div className={styles.filterItem}>
           <Input
             name="std"
             value={std}
             placeholder="请输入学员ID/手机号"
             label="学生信息"
-            onChange={e => this.onChange('std', e)}
+            onChange={e => this.props.onChange('std', e)}
             trim
             hasClear
           />
         </div>
-        <div className="filterItem">
+        <div className={styles.filterItem}>
           <Select
             name="is_conn"
             value={is_conn}
             label="最近拨打状态"
-            onChange={e => this.onChange('is_conn', e)}
+            onChange={e => this.props.onChange('is_conn', e)}
             hasClear
           >
             {
@@ -140,32 +90,32 @@ export default class TableFilter extends Component {
             }
           </Select>
         </div>
-        <div className="filterItem">
+        <div className={styles.filterItem}>
           <DatePicker.RangePicker
             name="create_time"
             value={create_time}
             label="注册时间"
             format="YYYY-MM-DD"
-            onChange={e => this.onChange('create_time', e)}
+            onChange={e => this.props.onChange('create_time', e)}
             hasClear
           />
         </div>
-        <div className="filterItem">
+        <div className={styles.filterItem}>
           <DatePicker.RangePicker
             name="exp_time"
             value={exp_time}
             label="预约课时间"
             format="YYYY-MM-DD"
-            onChange={e => this.onChange('exp_time', e)}
+            onChange={e => this.props.onChange('exp_time', e)}
             hasClear
           />
         </div>
-        <div className="filterItem">
+        <div className={styles.filterItem}>
           <Select
             name="device"
             value={device}
             label="设备类型"
-            onChange={e => this.onChange('device', e)}
+            onChange={e => this.props.onChange('device', e)}
             hasClear
           >
             {
@@ -177,10 +127,10 @@ export default class TableFilter extends Component {
           </Select>
         </div>
         <div className="spacer" />
-        <Button type="primary" className="submitBotton" onClick={this.memberList}>
+        <Button type="primary" className={styles.submitBotton} onClick={this.props.memberList}>
           查询
         </Button>
-        <Button type="primary" className="submitBotton" onClick={() => this.onChange('dialog', !dialog)}>
+        <Button type="primary" className={styles.submitBotton} onClick={() => this.props.onChange('dialog', !dialog)}>
           导入
         </Button>
       </div>

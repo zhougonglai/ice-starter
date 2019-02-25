@@ -16,10 +16,13 @@ export default class UserLayout extends Component {
     return (
       <Layout className="user-layout">
         <div className="header">
-          <a href="#" className="meta">
-            <span className="title">LOGO</span>
-          </a>
-          <p className="desc">让前端开发简单而友好</p>
+          <div className="meta">
+            <svg className="icon logo" aria-hidden="true">
+              <use xlinkHref="#icon-logo1" />
+            </svg>
+            {/* <span className="title" /> */}
+          </div>
+          {/* <p className="desc" /> */}
         </div>
 
         <Switch>

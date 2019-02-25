@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Table, Pagination, Button } from '@alifd/next';
-import { compose } from 'redux';
-import reducer from '../../reducer';
-import { memberList } from '../../actions';
-import injectReducer from '../../../../utils/injectReducer';
 
 import './CustomTable.scss';
 
-@compose(injectReducer({ key: 'member', reducer }))
-@withRouter
-@connect(({ member }) => ({ ...member }), { memberList })
 export default class Home extends Component {
   static displayName = 'Home';
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      current: 1,
-    };
+  qiyuCall = call_number => {
+    window.qiConnect.call(call_number);
   }
 
-  renderIcon = () => {
+  renderIcon = call_number => {
     return (
-      <svg className="icon pointer" aria-hidden="true">
+      <svg className="icon pointer" aria-hidden="true" onClick={() => this.qiyuCall(call_number)}>
         <use xlinkHref="#icon-call" />
       </svg>
     );
@@ -50,10 +38,6 @@ export default class Home extends Component {
       '';
   }
 
-  componentDidMount() {
-    this.props.memberList();
-  }
-
   render() {
     const { list, total, loading } = this.props;
     return (
@@ -66,7 +50,7 @@ export default class Home extends Component {
         >
           <Table.Column title="学生" dataIndex="sname" align="center" />
           <Table.Column title="手机号" dataIndex="mobile" align="center" />
-          <Table.Column title="七鱼呼叫" cell={this.renderIcon} align="center" />
+          <Table.Column title="七鱼呼叫" dataIndex="call_number" cell={this.renderIcon} align="center" />
           <Table.Column title="最近拨打状态" dataIndex="conn_show" align="center" />
           <Table.Column title="最近拨打时间" dataIndex="last_dial_up" align="center" />
           <Table.Column title="注册时间" dataIndex="create_time_show" align="center" />
@@ -75,8 +59,9 @@ export default class Home extends Component {
           <Table.Column title="操作" dataIndex="token" cell={this.renderOper} align="center" />
         </Table>
         <Pagination className="pagination"
-          current={this.state.current}
-          onChange={this.handlePagination}
+          pageSize={20}
+          current={this.props.current}
+          onChange={this.props.handlePagination}
           total={total}
         />
       </div>

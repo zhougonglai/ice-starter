@@ -55,11 +55,13 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "ice-scripts": "^1.6.0"
+    "ice-scripts": "^1.6.0",
+    "webpack-manifest-plugin": "^2.0.4",
+    "workbox-webpack-plugin": "^3.6.3"
   },
   "scripts": {
     "start": "ice dev",
-    "page": "ENV=prod ice dev",
+    "analyzer": "ice dev --analyzer ",
     "build": "ice build",
     "lint": "eslint . --ext '.js,.jsx' --fix"
   },
@@ -96,10 +98,6 @@
     "/mock": {
       "enable": true,
       "target": "http://yapi.demo.qunar.com/"
-    },
-    "/user": {
-      "enable": true,
-      "target": "http://eplus.test.com/"
     }
   }
 }

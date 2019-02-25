@@ -2,6 +2,7 @@ import {
   ADD,
   LIST,
   VIEW_MODEL,
+  QIYU_SDK,
   LOADING,
 } from './actions';
 
@@ -33,6 +34,8 @@ export default (state = initaState, action) => {
       return {
         ...state,
       };
+    case QIYU_SDK:
+      return state;
     default:
       return state;
   }
