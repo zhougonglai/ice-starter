@@ -2,18 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   background-color: white;
-  padding: 16px 0;
-  border-radius: 8px 8px 0 0;
+  padding: var(--base-distance, 8px);
+  border-radius: var(--base-distance, 8px) var(--base-distance, 8px) 0 0;
   .filterItem{
     display: flex;
     align-items: center;
-    margin: 8px;
+    margin: var(--base-distance, 8px);
     label{
-      margin-right: 8px;
+      margin-right: var(--base-distance, 8px);
     }
   }
   .submitBotton{
-    margin: 8px;
+    margin: var(--base-distance, 8px);
   }
 }
 

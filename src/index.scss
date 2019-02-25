@@ -1,3 +1,15 @@
+:root {
+  --background-color-dark: #262626;
+  --background-color-dark-2: #595959;
+  --background-color-light: #fafafa;
+  --background-color-light-2: #f5f5f5;
+  --brand-primary: #13c2c2;
+  --brand-primary-tap: #08979c;
+  --brand-primary-ondark: #e6fffb;
+
+  --base-distance: 8px;
+}
+
 .spacer{
   flex: 1;
 }
