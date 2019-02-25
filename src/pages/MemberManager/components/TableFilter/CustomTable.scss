@@ -1,9 +1,9 @@
 #tableContainer{
   background-color: white;
-  border-radius: 0 0 8px 8px;
-  padding-bottom: 16px;
+  border-radius: 0 0 var(--radius, 4px) var(--radius, 4px);
+  padding-bottom: var(--component-distance, 16px);
   .pagination{
-    margin: 16px 0;
+    margin-top: var(--base-distance, 8px);
     text-align: center;
   }
   .editIcon{
@@ -13,10 +13,10 @@
   .circle{
     display: inline-block;
     background-color: #28a745;
-    width: 8px;
-    height: 8px;
+    width: var(--base-distance, 8px);
+    height: var(--base-distance, 8px);
     border-radius: 50px;
-    margin-right: 4px;
+    margin-right: var(--base-distance, 8px);
   }
   .stateText{
     color: #28a745;
@@ -27,7 +27,7 @@
   .column{
     .row{
       +.row{
-        margin-top: 8px;
+        margin-top: var(--base-distance, 8px);
       }
     }
   }

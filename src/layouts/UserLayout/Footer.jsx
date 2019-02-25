@@ -14,7 +14,7 @@ export default () => {
           条款
         </a>
       </div>
-      <div style={styles.copyright}>杭州旦悦科技有限公司 © 2018 版权所有</div>
+      <div style={styles.copyright}>杭州旦悦科技有限公司 © 2019 版权所有</div>
     </div>
   );
 };

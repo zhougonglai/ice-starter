@@ -1,6 +1,6 @@
 /* eslint jsx-a11y/no-noninteractive-element-interactions:0 */
 import React, { PureComponent } from 'react';
-import { Balloon, Icon, Nav } from '@alifd/next';
+import { Balloon, Icon, Nav, Loading } from '@alifd/next';
 import IceImg from '@icedesign/img';
 import Layout from '@icedesign/layout';
 import cx from 'classnames';
@@ -15,8 +15,12 @@ export default class Header extends PureComponent {
   handleSetting = () => {
     this.props.history.push('/account/setting');
   };
+
+  componentDidMount() {
+    console.log(this.props);
+  }
   render() {
-    const { isMobile, className, style } = this.props;
+    const { isMobile, className, style, profile } = this.props;
 
     return (
       <Layout.Header
@@ -65,9 +69,11 @@ export default class Header extends PureComponent {
                   className="user-avatar"
                 />
                 <div className="user-profile">
-                  <span className="user-name">兰晓迪</span>
-                  <br />
-                  <span className="user-department">技术部</span>
+                  <Loading tip="加载中..." visible={!profile.name}>
+                    <span className="user-name">{profile.name}</span>
+                    {/* <br /> */}
+                    {/* <span className="user-department">技术部</span> */}
+                  </Loading>
                 </div>
                 <Icon type="arrow-down" size="xxs" className="icon-down" />
               </div>

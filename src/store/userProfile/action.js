@@ -1,17 +1,27 @@
 import { push } from 'react-router-redux';
 import { Message } from '@alifd/next';
 
+import { getUserProfile } from '../../api/user';
 import { reloadAuthorized } from '../../utils/Authorized';
 
-const overdue = dispatch => {
-  Message.warning('凭证失效');
-  reloadAuthorized();
-  dispatch(push('/user/login'));
+export const USER_PROFILE = 'USER_PROFILE';
+
+const overdue = (dispatch, { code, info }) => {
+  Message.warning(info);
+  if (code === 301) {
+    reloadAuthorized();
+    dispatch(push('/user/login'));
+  }
 };
 
 export const userProfile = () => async dispatch => {
   if ('Token' in sessionStorage || 'Token' in localStorage) {
-    console.log('update');
+    const { data, status, info, code } = await getUserProfile();
+    if (status) {
+      dispatch({ type: USER_PROFILE, payload: data });
+    } else {
+      overdue(dispatch, { data, info, status, code });
+    }
   } else {
     overdue(dispatch);
   }
