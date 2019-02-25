@@ -42,6 +42,7 @@ export default class TableFilter extends Component {
           title="添加学生"
           onOk={this.props.addStd}
           onCancel={() => this.props.onChange('dialog', false)}
+          onClose={() => this.props.onChange('dialog', false)}
           className={styles.memberManager}
         >
           <Input
