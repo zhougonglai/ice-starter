@@ -93,6 +93,7 @@ export default class TableFilter extends Component {
           {...member}
           memberAdd={this.props.memberAdd}
           memberModel={this.props.memberModel}
+          addStd={this.addStd}
           memberList={this.memberList}
           onChange={this.onChange}
           />
