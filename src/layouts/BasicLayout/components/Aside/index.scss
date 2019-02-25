@@ -20,26 +20,27 @@
       transition: none;
       border-left: 3px solid transparent;
       border-right: 3px solid transparent;
-      border-radius: $corner-2;
 
       &.next-selected{
         position: relative;
         &::before{
           content: '';
-          width: $corner-2;
+          width: var(--base-distance, 8px);
           height: 3px;
-          background: $color-brand1-6;
+          border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
+          background-color: $color-brand1-6;
           left: 0;
-          top: 19px;
+          top: 18px;
           position: absolute;
         }
         &::after{
           content: '';
-          width: $corner-2;
+          width: var(--base-distance, 8px);
           height: 3px;
-          background: $color-brand1-6;
+          border-radius: var(--radius, 4px) 0 0 var(--radius, 4px);
+          background-color: $color-brand1-6;
           right: 0;
-          top: 19px;
+          top: 18px;
           position: absolute;
         }
       }
