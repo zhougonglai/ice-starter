@@ -21,11 +21,11 @@ if (!ICE_CONTAINER) {
   throw new Error('当前页面不存在 <div id="ice-container"></div> 节点.');
 }
 
-if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js');
-  });
-}
+// if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js');
+//   });
+// }
 
 ReactDOM.render(
   <Provider store={store}>

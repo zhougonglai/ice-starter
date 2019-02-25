@@ -16,9 +16,6 @@ export default class Header extends PureComponent {
     this.props.history.push('/account/setting');
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
   render() {
     const { isMobile, className, style, profile } = this.props;
 

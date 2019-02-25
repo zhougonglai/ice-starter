@@ -7,14 +7,32 @@
     .next-nav .next-nav-item.next-menu-item {
       background: transparent;
       color: white;
+
+      .next-menu-item-text{
+        display: flex;
+        align-items: center;
+        .nav.icon{
+          margin-right: var(--base-distance, 8px);
+        }
+      }
     }
     .next-nav .next-menu-sub-menu .next-menu-item {
       transition: none;
-      
+
       &.next-selected,
       &:hover {
-        background: $color-brand1-6;
-        border-radius: $corner-2;
+        position: relative;
+        &::before{
+          content: '';
+          width: 40px;
+          height: 3px;
+          background: $color-brand1-6;
+          left: 0;
+          top: 19px;
+          position: absolute;
+        }
+        // border: 1px solid $color-brand1-6;
+        // border-radius: $corner-2;
       }
     }
 
