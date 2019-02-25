@@ -8,7 +8,7 @@ export const USER_PROFILE = 'USER_PROFILE';
 
 const overdue = (dispatch, { code, info }) => {
   Message.warning(info);
-  if (code === 301) {
+  if (!code || code === 301) {
     reloadAuthorized();
     dispatch(push('/user/login'));
   }
@@ -23,6 +23,6 @@ export const userProfile = () => async dispatch => {
       overdue(dispatch, { data, info, status, code });
     }
   } else {
-    overdue(dispatch);
+    overdue(dispatch, { code: 301, info: '凭证过期' });
   }
 };

@@ -18,21 +18,36 @@
     }
     .next-nav .next-menu-sub-menu .next-menu-item {
       transition: none;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-radius: $corner-2;
 
-      &.next-selected,
-      &:hover {
+      &.next-selected{
         position: relative;
         &::before{
           content: '';
-          width: 40px;
+          width: $corner-2;
           height: 3px;
           background: $color-brand1-6;
           left: 0;
           top: 19px;
           position: absolute;
         }
-        // border: 1px solid $color-brand1-6;
-        // border-radius: $corner-2;
+        &::after{
+          content: '';
+          width: $corner-2;
+          height: 3px;
+          background: $color-brand1-6;
+          right: 0;
+          top: 19px;
+          position: absolute;
+        }
+      }
+
+      &.next-selected,
+      &:hover {
+        border-left-color: $color-brand1-6;
+        border-right-color: $color-brand1-6;
       }
     }
 
