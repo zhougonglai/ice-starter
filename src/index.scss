@@ -12,6 +12,11 @@
   --component-distance: 16px;
 }
 
+.fit-content{
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+
 .spacer{
   flex: 1;
 }

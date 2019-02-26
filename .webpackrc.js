@@ -7,14 +7,14 @@ module.exports = ({webpack}) => {
     output:{
       path: path.resolve('dist')
     },
-    plugins: [
-      new webpack.DllPlugin({ name: '[name]', path: path.join(__dirname, 'build/[name].json') }),
-      // new ManifestPlugin(),
-      // new workboxPlugin.GenerateSW({
-      //   swDest: 'sw.js',
-      //   clientsClaim: true,
-      //   skipWaiting: true,
-      // })
-    ]
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components/'),
+        '@api': path.resolve(__dirname, 'src/api/'),
+        '@store': path.resolve(__dirname, 'src/store/'),
+        '@utils': path.resolve(__dirname, 'src/utils/')
+      }
+    },
+    plugins: []
   }
 }

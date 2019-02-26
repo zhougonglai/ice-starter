@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
-import TableFilter from './components/TableFilter';
+import React from 'react';
+import Loadable from 'react-loadable';
+import { Loading } from '@alifd/next';
 
-export default class MemberManager extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div className="member-manager-page">
-        <TableFilter />
-      </div>
-    );
-  }
-}
+/**
+ * @EXAMPLE
+ * 骨架屏 loader
+*/
+export default Loadable({
+  loader: () => import(/* webpackChunkName: "list" */ './MemberManager'),
+  loading: () => <Loading className="fit-content" />,
+});
