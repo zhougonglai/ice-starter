@@ -4,8 +4,11 @@ const path = require('path');
 
 module.exports = ({webpack}) => {
   return {
+    output:{
+      path: path.resolve('dist')
+    },
     plugins: [
-      // new webpack.DllPlugin({ name: '[name]', path: path.join(__dirname, 'public/[name].json') }),
+      new webpack.DllPlugin({ name: '[name]', path: path.join(__dirname, 'build/[name].json') }),
       // new ManifestPlugin(),
       // new workboxPlugin.GenerateSW({
       //   swDest: 'sw.js',
