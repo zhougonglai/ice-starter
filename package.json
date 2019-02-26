@@ -15,9 +15,9 @@
   "dependencies": {
     "@alifd/next": "^1.13.2",
     "@antv/data-set": "^0.9.5",
-    "@icedesign/container": "^1.x",
-    "@icedesign/data-binder": "^1.x",
-    "@icedesign/ellipsis": "^1.x",
+    "@icedesign/container": "^1.0.1",
+    "@icedesign/data-binder": "^1.0.2",
+    "@icedesign/ellipsis": "^1.0.1",
     "@icedesign/form-binder": "^1.0.3",
     "@icedesign/foundation-symbol": "^1.0.0",
     "@icedesign/img": "^1.0.0",
