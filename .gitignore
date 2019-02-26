@@ -5,7 +5,9 @@
 
 # production
 /build
-/dist
+# /dist
+
+*-lock.json
 
 # misc
 .idea/
