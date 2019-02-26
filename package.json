@@ -94,7 +94,7 @@
   "proxyConfig": {
     "/Outsource": {
       "enable": true,
-      "target": "http://www.test.com/"
+      "target": "https://www.test.com/"
     },
     "/mock": {
       "enable": true,

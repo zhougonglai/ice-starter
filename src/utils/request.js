@@ -33,7 +33,7 @@ export default {
   get: (url, params, option) =>
     fetch(`${base}${url}${searchParams(params)}`, {
       headers: {
-        Token: sessionStorage.Token || localStorage.Token,
+        Authorization: sessionStorage.Token || localStorage.Token,
       },
       ...options,
       ...option,
@@ -52,7 +52,7 @@ export default {
     fetch(`${base}${url}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Token: sessionStorage.Token || localStorage.Token,
+        Authorization: sessionStorage.Token || localStorage.Token,
       },
       ...options,
       ...option,
