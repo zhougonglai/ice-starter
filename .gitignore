@@ -4,16 +4,15 @@
 /node_modules
 
 # production
-/build
-# /dist
+/dist
 
-*-lock.json
 
 # misc
 .idea/
 .happypack
 .DS_Store
 
+*-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
