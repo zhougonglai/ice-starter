@@ -31,10 +31,7 @@ const base = process.env.NODE_ENV === 'development' ? '' : 'https://www.landi.co
  */
 export default {
   get: (url, params, option) =>
-    fetch(`${base}${url}${searchParams(params)}`, {
-      headers: {
-        Authorization: sessionStorage.Token || localStorage.Token,
-      },
+    fetch(`${base}${url}${searchParams({ ...params, token: sessionStorage.Token || localStorage.Token })}`, {
       ...options,
       ...option,
     }).then(res => res.json()).catch(checkStatus),
@@ -49,10 +46,9 @@ export default {
       body: qs.stringify(body),
     }).then(res => res.json()).catch(checkStatus),
   auth: (url, body, option) =>
-    fetch(`${base}${url}`, {
+    fetch(`${base}${url}${searchParams({ token: sessionStorage.Token || localStorage.Token })}`, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: sessionStorage.Token || localStorage.Token,
       },
       ...options,
       ...option,
