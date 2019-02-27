@@ -74,6 +74,7 @@
     "entry": "src/index.js",
     "localization": false,
     "output": {
+      "filename": "js/[name].[chunkhash].js",
       "publicPath": "./"
     }
   },
