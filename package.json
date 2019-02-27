@@ -74,7 +74,7 @@
     "entry": "src/index.js",
     "localization": false,
     "output": {
-      "filename": "js/[name].[chunkhash].js",
+      "filename": "js/[name].[hash].js",
       "publicPath": "./"
     }
   },
@@ -95,7 +95,7 @@
   "proxyConfig": {
     "/Outsource": {
       "enable": true,
-      "target": "https://www.test.com/"
+      "target": "http://www.test.com/"
     },
     "/mock": {
       "enable": true,
