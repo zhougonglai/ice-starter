@@ -7,6 +7,6 @@ import { Loading } from '@alifd/next';
  * 骨架屏 loader
 */
 export default Loadable({
-  loader: () => import(/* webpackChunkName: "list" */ './MemberManager'),
+  loader: () => import(/* webpackChunkName: "MemberManager" */ './MemberManager'),
   loading: () => <Loading className="fit-content" />,
 });
