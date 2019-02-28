@@ -24,15 +24,19 @@ const asideMenuConfig = [
   {
     name: '会员',
     path: '/member',
-    icon: <svg className="nav icon" aria-hidden="true">
-      <use xlinkHref="#icon-qingjingmoshi" />
-    </svg>,
+    icon: (
+      <svg className="nav icon" aria-hidden="true">
+        <use xlinkHref="#icon-qingjingmoshi" />
+      </svg>
+    ),
     children: [
       {
         name: '会员管理',
-        icon: <svg className="nav icon" aria-hidden="true">
-          <use xlinkHref="#icon-wode" />
-        </svg>,
+        icon: (
+          <svg className="nav icon" aria-hidden="true">
+            <use xlinkHref="#icon-wode" />
+          </svg>
+        ),
         path: '/member/manager',
       },
     ],

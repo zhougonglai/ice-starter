@@ -1,13 +1,13 @@
 import { push } from 'react-router-redux';
 import { Message } from '@alifd/next';
 
-import { reloadAuthorized } from '../../utils/Authorized';
 import {
   lists,
   add,
   viewModel,
   qiyuSDK,
-} from '../../api/member';
+} from '@api/member';
+import { reloadAuthorized } from '../../utils/Authorized';
 
 export const ADD = 'ADD';
 export const LIST = 'LIST';
