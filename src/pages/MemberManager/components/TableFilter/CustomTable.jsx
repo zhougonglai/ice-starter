@@ -40,6 +40,7 @@ export default class Home extends Component {
 
   render() {
     const { list, total, loading } = this.props;
+    /* eslint-disable */
     return (
       <div id="tableContainer">
         <Table

@@ -1,6 +1,6 @@
 /* eslint react/no-string-refs:0 */
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import FoundationSymbol from '@icedesign/foundation-symbol';
 import { Input, Checkbox, Grid, Form } from '@alifd/next';
 
@@ -61,6 +61,9 @@ export default class UserLogin extends Component {
                 name="account"
                 maxLength={20}
                 placeholder="用户名"
+                autoComplete="name"
+                autoFocus
+                trim
               />
             </FormItem>
             <FormItem required requiredMessage="必填" className="formItem">
@@ -71,6 +74,8 @@ export default class UserLogin extends Component {
                 name="password"
                 htmlType="password"
                 placeholder="密码"
+                autoComplete="on"
+                trim
               />
             </FormItem>
             <FormItem>

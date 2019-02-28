@@ -25,7 +25,7 @@
     "@icedesign/layout": "^1.x",
     "@icedesign/theme": "^0.x",
     "axios": "^0.17.1",
-    "bizcharts": "^3.2.2",
+    "bizcharts": "^3.4.4",
     "bizgoblin": "0.0.1",
     "classnames": "^2.2.5",
     "enquire-js": "^0.1.2",
@@ -40,8 +40,8 @@
     "react": "^16.8.3",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.8.3",
-    "react-redux": "^5.0.7",
     "react-loadable": "^5.5.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
     "redux": "3.6.0",
@@ -56,7 +56,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "ice-scripts": "^1.6.0",
+    "ice-scripts": "^1.8.9",
     "webpack-manifest-plugin": "^2.0.4",
     "workbox-webpack-plugin": "^3.6.3"
   },
@@ -81,7 +81,7 @@
   "themeConfig": {
     "theme": "dark",
     "primaryColor": "rgb(20, 200, 210)",
-    "secondaryColor": "#2192D9"
+    "secondaryColor": "rgb(240, 155, 190)"
   },
   "scaffoldConfig": {
     "builder": "ice-scripts",
