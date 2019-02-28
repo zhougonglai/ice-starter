@@ -37,6 +37,24 @@
   width: 2rem;
   height: 2rem;
 }
+.next-overlay-wrapper.opened{
+  .next-nav.next-normal{
+    border-radius: 8px;
+    overflow: hidden;
+    .next-nav-item.next-menu-item{
+      &.next-selected{
+      }
+      .next-menu-item-text{
+        display: inline-flex;
+      }
+    }
+  }
+}
+
+.next-icon.next-nav-icon{
+  width: 20px;
+  height: 40px;
+}
 
 .pointer{
   cursor: pointer;

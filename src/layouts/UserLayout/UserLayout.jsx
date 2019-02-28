@@ -20,9 +20,7 @@ export default class UserLayout extends Component {
             <svg className="icon logo" aria-hidden="true">
               <use xlinkHref="#icon-logo1" />
             </svg>
-            {/* <span className="title" /> */}
           </div>
-          {/* <p className="desc" /> */}
         </div>
 
         <Switch>

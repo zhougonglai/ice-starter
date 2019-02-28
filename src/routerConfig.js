@@ -7,16 +7,10 @@ import { asideMenuConfig } from './menuConfig';
 import UserLogin from './pages/UserLogin';
 import MemberManager from './pages/MemberManager';
 
-import UserRegister from './pages/UserRegister';
-
 const routerConfig = [
   {
     path: '/user/login',
     component: UserLogin,
-  },
-  {
-    path: '/user/register',
-    component: UserRegister,
   },
   {
     path: '/member/manager',

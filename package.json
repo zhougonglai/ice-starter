@@ -78,6 +78,11 @@
       "publicPath": "./"
     }
   },
+  "themeConfig": {
+    "theme": "dark",
+    "primaryColor": "rgb(20, 200, 210)",
+    "secondaryColor": "#2192D9"
+  },
   "scaffoldConfig": {
     "builder": "ice-scripts",
     "name": "ice-design-pro",

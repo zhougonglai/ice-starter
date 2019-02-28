@@ -1,101 +1,32 @@
 .ice-layout {
   .ice-design-layout-aside {
-    .next-nav,
+    .collapse-btn {
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+      color: $color-brand1-6;
+    }
+
+    .next-nav{
+      background: transparent;
+      .next-nav-item.next-menu-item {
+        background-color: transparent;
+        color: white;
+        .next-menu-item-text{
+          display: inline-flex;
+        }
+        &.next-selected{
+          background-color: rgba(20, 200, 210, 0.4);
+          color: white;
+          border-radius: 8px;
+        }
+      }
+    }
+
     .next-nav-sub-nav-item {
       background: transparent;
-      .next-menu-item.next-nav-item{
-        border-left: 3px solid transparent;
-        border-radius: 4px;
-        position: relative;
-        transform: all 0.6s ease;
-      }
-      .active{
-        &.next-selected{
-          border-left-color: $color-brand1-6;
-          border-right-color: $color-brand1-6;
-          &::before{
-            content: '';
-            width: var(--base-distance, 8px);
-            height: 3px;
-            border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
-            background-color: $color-brand1-6;
-            left: 0;
-            top: 18px;
-            position: absolute;
-          }
-          &::after{
-            content: '';
-            width: var(--base-distance, 8px);
-            height: 3px;
-            border-radius: var(--radius, 4px) 0 0 var(--radius, 4px);
-            background-color: $color-brand1-6;
-            right: 0;
-            top: 18px;
-            position: absolute;
-          }
-        }
-        &>.next-menu-item.next-nav-item{
-          border-left-color: $color-brand1-6;
-          &::before{
-            content: '';
-            width: var(--base-distance, 8px);
-            height: 3px;
-            border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
-            background-color: $color-brand1-6;
-            left: 0;
-            top: 18px;
-            position: absolute;
-          }
-        }
-      }
-    }
-    .next-nav .next-nav-item.next-menu-item {
-      background: transparent;
-      color: white;
-
-      .next-menu-item-text{
-        display: flex;
-        align-items: center;
-        .nav.icon{
-          margin-right: var(--base-distance, 8px);
-        }
-      }
-    }
-    .next-nav .next-menu-sub-menu .next-menu-item {
-      transition: none;
-      border-left: 3px solid transparent;
-      border-right: 3px solid transparent;
-      border-radius: 4px;
-      transform: all 0.6s ease;
-      &.next-selected{
-        position: relative;
-        &::before{
-          content: '';
-          width: var(--base-distance, 8px);
-          height: 3px;
-          border-radius: 0 var(--radius, 4px) var(--radius, 4px) 0;
-          background-color: $color-brand1-6;
-          left: 0;
-          top: 18px;
-          position: absolute;
-        }
-        &::after{
-          content: '';
-          width: var(--base-distance, 8px);
-          height: 3px;
-          border-radius: var(--radius, 4px) 0 0 var(--radius, 4px);
-          background-color: $color-brand1-6;
-          right: 0;
-          top: 18px;
-          position: absolute;
-        }
-      }
-
-      &.next-selected,
-      &:hover {
-        border-left-color: $color-brand1-6;
-        border-right-color: $color-brand1-6;
-      }
     }
 
     .menu-btn {

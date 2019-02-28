@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import cx from 'classnames';
-import { Icon, Nav } from '@alifd/next';
+import { Icon, Nav, Menu } from '@alifd/next';
 
 import Logo from '../Logo';
 import { asideMenuConfig } from '../../../../menuConfig';
 import Authorized from '../../../../utils/Authorized';
 
 import './index.scss';
-
-const SubNav = Nav.SubNav;
-const NavItem = Nav.Item;
 
 @withRouter
 export default class Aside extends Component {
@@ -24,6 +21,7 @@ export default class Aside extends Component {
 
     const openKeys = this.getDefaultOpenKeys();
     this.state = {
+      collapse: props.collapse,
       openDrawer: false,
       openKeys,
     };
@@ -39,6 +37,19 @@ export default class Aside extends Component {
     this.setState({
       openDrawer: !openDrawer,
     });
+  };
+
+  /**
+   * 左侧菜单收缩切换
+   */
+  toggleCollapse = () => {
+    const { collapse } = this.state;
+    this.onOpenChange([])
+      .then(() => {
+        this.setState({
+          collapse: !collapse,
+        });
+      });
   };
 
   /**
@@ -72,10 +83,12 @@ export default class Aside extends Component {
    * 当前展开的菜单项
    */
   onOpenChange = (openKeys) => {
-    this.setState({
-      openKeys,
+    return new Promise(resolve => {
+      this.setState({
+        openKeys,
+      }, resolve);
+      this.openKeysCache = openKeys;
     });
-    this.openKeysCache = openKeys;
   };
 
   /**
@@ -104,22 +117,22 @@ export default class Aside extends Component {
 
       if (childrenItems && childrenItems.length > 0) {
         return (
-          <SubNav
+          <Nav.SubNav
             key={index}
             icon={item.icon ? item.icon : null}
-            label={<span className="ice-menu-collapse-hide">{item.name}</span>}
+            label={item.name}
             className={this.props.location.pathname.includes(item.path) ? 'active' : ''}
           >
             {childrenItems}
-          </SubNav>
+          </Nav.SubNav>
         );
       }
       return null;
     }
     return (
-      <NavItem key={item.path} icon={item.icon ? item.icon : null} className={this.props.location.pathname.includes(item.path) ? 'active' : ''}>
+      <Nav.Item key={item.path} icon={item.icon ? item.icon : null} className={this.props.location.pathname.includes(item.path) ? 'active' : ''}>
         <Link to={item.path}>{item.name}</Link>
-      </NavItem>
+      </Nav.Item>
     );
   };
 
@@ -155,14 +168,27 @@ export default class Aside extends Component {
         )}
 
         <Nav
+          header={!isMobile && (
+            <a className="collapse-btn" onClick={this.toggleCollapse}>
+              <Icon
+                type={this.state.collapse ? 'arrow-right' : 'arrow-left'}
+                size="small"
+              />
+            </a>
+          )}
+          iconOnly={this.state.collapse}
+          mode={this.state.collapse ? 'popup' : 'inline'}
           style={{ width: 200 }}
+          openMode="single"
           direction="ver"
           activeDirection={null}
           selectedKeys={[pathname]}
-          openKeys={this.state.openKeys}
           defaultSelectedKeys={[pathname]}
+          openKeys={this.state.openKeys}
           onOpen={this.onOpenChange}
           onClick={this.onMenuClick}
+          hasArrow={false}
+          hasTooltip
         >
           {this.getNavMenuItems(asideMenuConfig)}
         </Nav>
