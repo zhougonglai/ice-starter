@@ -176,6 +176,12 @@ export default class Aside extends Component {
               />
             </a>
           )}
+          footer={
+            !this.state.collapse &&
+            <div className="brand-article">
+              <div className="article" />
+            </div>
+          }
           iconOnly={this.state.collapse}
           mode={this.state.collapse ? 'popup' : 'inline'}
           style={{ width: 200 }}

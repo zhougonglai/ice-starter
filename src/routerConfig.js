@@ -6,6 +6,7 @@ import { asideMenuConfig } from './menuConfig';
 
 import UserLogin from './pages/UserLogin';
 import MemberManager from './pages/MemberManager';
+import HomeMain from './pages/Home';
 
 const routerConfig = [
   {
@@ -15,6 +16,10 @@ const routerConfig = [
   {
     path: '/member/manager',
     component: MemberManager,
+  },
+  {
+    path: '/home/main',
+    component: HomeMain,
   },
 ];
 
