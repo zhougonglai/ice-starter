@@ -12,10 +12,6 @@ import './index.scss';
 
 @withRouter
 export default class Header extends PureComponent {
-  handleSetting = () => {
-    this.props.history.push('/account/setting');
-  };
-
   render() {
     const { isMobile, className, style, profile } = this.props;
 
@@ -79,13 +75,6 @@ export default class Header extends PureComponent {
             className="user-profile-menu"
           >
             <ul>
-              {/* <li
-                className="user-profile-menu-item"
-                onClick={this.handleSetting}
-              >
-                <Icon type="set" size="small" />
-                设置
-              </li> */}
               <li
                 className="user-profile-menu-item"
                 onClick={this.props.handleLogout}

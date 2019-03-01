@@ -23,6 +23,6 @@ export const userProfile = () => async dispatch => {
       overdue(dispatch, { data, info, status, code });
     }
   } else {
-    overdue(dispatch, { code: 301, info: '凭证过期' });
+    dispatch(push('/user/login'));
   }
 };
