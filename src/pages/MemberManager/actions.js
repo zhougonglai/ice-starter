@@ -19,6 +19,11 @@ const overdue = ({ code, info }, dispatch) => {
   dispatch({ type: LOADING, payload: false });
   Message.warning(info);
   if (code === 301) {
+    if ('Token' in sessionStorage) {
+      sessionStorage.removeItem('Token');
+    } else if ('Token' in localStorage) {
+      localStorage.removeItem('Token');
+    }
     reloadAuthorized();
     dispatch(push('/user/login'));
   }

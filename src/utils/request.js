@@ -22,8 +22,12 @@ const searchParams = query =>
   ((typeof query === 'object')
     ? `?${new URLSearchParams(query).toString()}`
     : '');
-
-const base = process.env.NODE_ENV === 'development' ? '' : 'https://www.landi.com';
+/* eslint-disable */
+const base = process.env.NODE_ENV === 'development'
+            ? ''
+            : RELEASE
+              ? 'https://www.test.com'
+              : 'https://www.landi.com';
 
 
 /**

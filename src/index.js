@@ -10,6 +10,7 @@ import './index.scss';
 
 import router from './router';
 import configureStore from './configureStore';
+import * as serviceWorker from './utils/sw';
 
 // Create redux store with history
 const initialState = {};
@@ -26,6 +27,8 @@ if (!ICE_CONTAINER) {
 //     navigator.serviceWorker.register('/sw.js');
 //   });
 // }
+
+serviceWorker.register();
 
 ReactDOM.render(
   <Provider store={store}>

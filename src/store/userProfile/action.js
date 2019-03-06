@@ -9,6 +9,11 @@ export const USER_PROFILE = 'USER_PROFILE';
 const overdue = (dispatch, { code, info }) => {
   Message.warning(info);
   if (!code || code === 301) {
+    if ('Token' in sessionStorage) {
+      sessionStorage.removeItem('Token');
+    } else if ('Token' in localStorage) {
+      localStorage.removeItem('Token');
+    }
     reloadAuthorized();
     dispatch(push('/user/login'));
   }
