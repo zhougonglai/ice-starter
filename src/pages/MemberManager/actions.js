@@ -43,11 +43,9 @@ export const memberAdd = (params) => async (dispatch) => {
 };
 
 export const memberModel = params => async dispatch => {
-  dispatch({ type: LOADING, payload: true });
   const { data, status, info, code } = await viewModel(params);
   if (status) {
     dispatch({ type: VIEW_MODEL, payload: data });
-    dispatch({ type: LOADING, payload: false });
   } else {
     overdue({ data, info, status, code }, dispatch);
   }

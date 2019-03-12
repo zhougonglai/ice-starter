@@ -32,6 +32,7 @@ export default class TableFilter extends Component {
       nickname: '',
       current: 1,
       dialog: false,
+      levels: [],
     };
   }
 
@@ -76,6 +77,41 @@ export default class TableFilter extends Component {
     }
   }
 
+  getStdLevels = (visible) => {
+    if (visible) {
+      setTimeout(() => {
+        this.setState({ levels: [
+          {
+            level: 1,
+            label: '初级-简单版',
+          },
+          {
+            level: 2,
+            label: '初级-加难版',
+          },
+          {
+            level: 3,
+            label: '中级',
+          },
+          {
+            level: 4,
+            label: '中高级',
+          },
+          {
+            level: 5,
+            label: '2.0初级 - 简单版',
+          },
+          {
+            level: 6,
+            label: '2.0 中级',
+          },
+        ] });
+      }, 3000);
+    } else {
+      this.setState({ levels: [] });
+    }
+  }
+
   componentDidMount() {
     this.memberList();
     this.props.getSDK();
@@ -101,6 +137,7 @@ export default class TableFilter extends Component {
           {...this.state}
           {...member}
           memberList={this.memberList}
+          getStdLevels={this.getStdLevels}
           handlePagination={this.handlePagination}
           onChange={this.onChange}
           />

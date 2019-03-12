@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Button } from '@alifd/next';
+import { Table, Pagination, Button, Dropdown, Menu, Loading } from '@alifd/next';
 
 import './CustomTable.scss';
 
@@ -21,6 +21,22 @@ export default class Home extends Component {
   renderOper = token => {
     return (
       <div className="split">
+        <Dropdown
+          trigger={<Button text type="primary" >选择级别</Button>}
+          triggerType="click"
+          align="tr br"
+          onVisibleChange={this.props.getStdLevels}
+        >
+          <Menu>
+            {
+              this.props.levels.length
+              ? this.props.levels.map((level, i) =>
+                <Menu.Item key={i}>{level.label}</Menu.Item>)
+              : <Loading className="fill-width" />
+            }
+          </Menu>
+        </Dropdown>
+        <div className="spacer" />
         <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Test/reserve/f/2?outsource=${token}`}>约体验课</Button>
         <div className="spacer" />
         <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Course/index?outsource=${token}`}>下单</Button>
