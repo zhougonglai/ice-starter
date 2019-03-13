@@ -18,27 +18,22 @@ export default class Home extends Component {
     );
   }
 
-  renderOper = token => {
+  renderOper = (token, index, record) => {
     return (
       <div className="split">
         <Dropdown
-          trigger={<Button text type="primary" >选择级别</Button>}
+          trigger={<Button text type="primary" >{Number.isFinite(record.exp_difficulty) ? this.props.exp_difficultys.find(exp_difficulty => exp_difficulty.id === record.exp_difficulty).value : '选择级别'}</Button>}
           triggerType="click"
           align="tr br"
-          onVisibleChange={this.props.getStdLevels}
         >
-          <Menu>
+          <Menu onItemClick={(key) => this.props.setMemberExp_difficulty(key, record)}>
             {
-              this.props.levels.length
-              ? this.props.levels.map((level, i) =>
-                <Menu.Item key={i}>{level.label}</Menu.Item>)
-              : <Loading className="fill-width" />
+              this.props.exp_difficultys.map(({ value, id }) =>
+                <Menu.Item key={id}>{value}</Menu.Item>)
             }
           </Menu>
         </Dropdown>
-        <div className="spacer" />
         <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Test/reserve/f/2?outsource=${token}`}>约体验课</Button>
-        <div className="spacer" />
         <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Course/index?outsource=${token}`}>下单</Button>
       </div>
     );

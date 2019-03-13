@@ -21,4 +21,5 @@ export const userLogin = ({ account, password, remember }) => async dispatch => 
   } else {
     Message.error(info);
   }
+  return status;
 };

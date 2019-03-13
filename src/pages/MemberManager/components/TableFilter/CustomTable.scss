@@ -23,6 +23,9 @@
   }
   .split{
     display: flex;
+    &>*{
+      flex: 1;
+    }
   }
   .column{
     .row{

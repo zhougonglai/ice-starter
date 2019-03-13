@@ -11,3 +11,6 @@ export const viewModel = params =>
 
 export const qiyuSDK = () =>
   request.get('/Outsource/Index/getCallToolbar');
+
+export const submitExpDifficulty = params =>
+  request.auth('/Outsource/Student/submitExpDifficulty', params);

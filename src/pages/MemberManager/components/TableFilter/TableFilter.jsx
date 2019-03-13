@@ -6,13 +6,46 @@ import { Message } from '@alifd/next';
 
 import injectReducer from '../../../../utils/injectReducer';
 import reducer from '../../reducer';
-import { memberAdd, memberModel, memberList, getSDK } from '../../actions';
+import {
+  memberAdd,
+  memberModel,
+  memberList,
+  getSDK,
+  setMemberExp_difficulty,
+} from '../../actions';
 import CustomTable from './CustomTable';
 import Filter from './Filter';
 
+const exp_difficultys = [
+  {
+    id: 1,
+    value: '初级-简单版',
+  },
+  {
+    id: 2,
+    value: '初级-加难版',
+  },
+  {
+    id: 3,
+    value: '中级',
+  },
+  {
+    id: 4,
+    value: '中高级',
+  },
+  {
+    id: 5,
+    value: '2.0 初级-简单版',
+  },
+  {
+    id: 6,
+    value: '2.0 中级',
+  },
+];
+
 @compose(injectReducer({ key: 'member', reducer }))
 @withRouter
-@connect(({ member }) => ({ member }), { memberAdd, memberModel, memberList, getSDK })
+@connect(({ member }) => ({ member }), { memberAdd, memberModel, memberList, getSDK, setMemberExp_difficulty })
 export default class TableFilter extends Component {
   static displayName = 'TableFilter';
 
@@ -77,41 +110,6 @@ export default class TableFilter extends Component {
     }
   }
 
-  getStdLevels = (visible) => {
-    if (visible) {
-      setTimeout(() => {
-        this.setState({ levels: [
-          {
-            level: 1,
-            label: '初级-简单版',
-          },
-          {
-            level: 2,
-            label: '初级-加难版',
-          },
-          {
-            level: 3,
-            label: '中级',
-          },
-          {
-            level: 4,
-            label: '中高级',
-          },
-          {
-            level: 5,
-            label: '2.0初级 - 简单版',
-          },
-          {
-            level: 6,
-            label: '2.0 中级',
-          },
-        ] });
-      }, 3000);
-    } else {
-      this.setState({ levels: [] });
-    }
-  }
-
   componentDidMount() {
     this.memberList();
     this.props.getSDK();
@@ -136,8 +134,9 @@ export default class TableFilter extends Component {
         <CustomTable
           {...this.state}
           {...member}
+          exp_difficultys={exp_difficultys}
+          setMemberExp_difficulty={this.props.setMemberExp_difficulty}
           memberList={this.memberList}
-          getStdLevels={this.getStdLevels}
           handlePagination={this.handlePagination}
           onChange={this.onChange}
           />

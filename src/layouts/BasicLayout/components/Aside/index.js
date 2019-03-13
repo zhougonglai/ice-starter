@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import cx from 'classnames';
-import { Icon, Nav, Menu } from '@alifd/next';
+import { Icon, Nav } from '@alifd/next';
 
 import Logo from '../Logo';
 import { asideMenuConfig } from '../../../../menuConfig';

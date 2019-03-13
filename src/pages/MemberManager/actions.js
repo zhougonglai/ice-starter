@@ -6,6 +6,7 @@ import {
   add,
   viewModel,
   qiyuSDK,
+  submitExpDifficulty,
 } from '@api/member';
 import { reloadAuthorized } from '../../utils/Authorized';
 
@@ -14,6 +15,7 @@ export const LIST = 'LIST';
 export const VIEW_MODEL = 'VIEW_MODEL';
 export const LOADING = 'LOADING';
 export const QIYU_SDK = 'QIYU_SDK';
+export const SET_LEVEL = 'SET_LEVEL';
 
 const overdue = ({ code, info }, dispatch) => {
   dispatch({ type: LOADING, payload: false });
@@ -50,6 +52,22 @@ export const memberModel = params => async dispatch => {
     overdue({ data, info, status, code }, dispatch);
   }
   return { data, info, status };
+};
+
+export const setMemberExp_difficulty = (key, record) => async dispatch => {
+  if (Number.parseInt(key, 10) === record.exp_difficulty) {
+    Message.notice('该学生已经是该级别了');
+  } else {
+    dispatch({ type: LOADING, payload: true });
+    const { data, status, info, code } = await submitExpDifficulty({ sid: record.sid, exp_difficulty: Number.parseInt(key, 10) });
+    dispatch({ type: LOADING, payload: false });
+    if (status) {
+      dispatch({ type: SET_LEVEL, payload: { ...record, exp_difficulty: Number.parseInt(key, 10) } });
+    } else {
+      overdue({ data, info, status, code }, dispatch);
+    }
+    return { data, info, status };
+  }
 };
 
 export const memberList = (params) => async dispatch => {

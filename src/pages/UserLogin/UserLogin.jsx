@@ -30,6 +30,7 @@ export default class UserLogin extends Component {
       account: '',
       password: '',
       remember: false,
+      loading: false,
     };
   }
 
@@ -44,7 +45,13 @@ export default class UserLogin extends Component {
     if (errors) {
       console.log('errors', errors);
     } else {
-      this.props.userLogin(form);
+      this.setState({ loading: true }, () => {
+        this.props.userLogin(form).then(status => {
+          if (!status) {
+            this.setState({ loading: false });
+          }
+        });
+      });
     }
   };
 
@@ -87,6 +94,7 @@ export default class UserLogin extends Component {
               <Form.Submit
                 type="primary"
                 validate
+                loading={this.state.loading}
                 onClick={this.handleSubmit}
                 className="submitBtn"
               >

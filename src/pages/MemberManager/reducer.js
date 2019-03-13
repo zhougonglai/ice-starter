@@ -4,6 +4,7 @@ import {
   VIEW_MODEL,
   QIYU_SDK,
   LOADING,
+  SET_LEVEL,
 } from './actions';
 
 const initaState = {
@@ -28,6 +29,11 @@ export default (state = initaState, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    case SET_LEVEL:
+      state.list.splice(state.list.findIndex(({ sid }) => sid === action.payload.sid), 1, action.payload);
+      return {
+        ...state,
       };
     case VIEW_MODEL:
       // TODO viewModel并不需要被后端管理. 如果需要得重新封装
