@@ -15,7 +15,7 @@ importScripts("./workbox-v3.6.3/workbox-sw.js");
 workbox.setConfig({modulePathPrefix: "./workbox-v3.6.3"});
 
 importScripts(
-  "./precache-manifest.d6b08e8a5399adf9b118c96892d36ad4.js"
+  "./precache-manifest.3987e0049c35c2ccb41c917957fc3beb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "landi-outsource"});
