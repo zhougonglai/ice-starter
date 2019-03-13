@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Pagination, Button, Dropdown, Menu, Loading } from '@alifd/next';
+import { Table, Pagination, Button, Dropdown, Menu, Loading, Icon } from '@alifd/next';
 
 import './CustomTable.scss';
 
@@ -22,19 +22,25 @@ export default class Home extends Component {
     return (
       <div className="split">
         <Dropdown
-          trigger={<Button text type="primary" >{Number.isFinite(record.exp_difficulty) ? this.props.exp_difficultys.find(exp_difficulty => exp_difficulty.id === record.exp_difficulty).value : '选择级别'}</Button>}
+          trigger={
+            <Button text>
+              {Number.isFinite(record.exp_difficulty)
+              ? this.props.exp_difficultys.find(exp_difficulty => exp_difficulty.id === record.exp_difficulty).value
+              : '选择级别'}
+              <Icon type="arrow-down" />
+            </Button>}
           triggerType="click"
           align="tr br"
         >
           <Menu onItemClick={(key) => this.props.setMemberExp_difficulty(key, record)}>
             {
               this.props.exp_difficultys.map(({ value, id }) =>
-                <Menu.Item key={id}>{value}</Menu.Item>)
+                <Menu.Item key={id} disabled={id === record.exp_difficulty}>{value}</Menu.Item>)
             }
           </Menu>
         </Dropdown>
-        <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Test/reserve/f/2?outsource=${token}`}>约体验课</Button>
-        <Button text type="primary" component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Course/index?outsource=${token}`}>下单</Button>
+        <Button text component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Test/reserve/f/2?outsource=${token}`}>约体验课</Button>
+        <Button text component="a" target="_blank" href={`${process.env.NODE_ENV === 'development' ? 'http://www.test.com' : 'https://www.landi.com'}/Member/Course/index?outsource=${token}`}>下单</Button>
       </div>
     );
   };
